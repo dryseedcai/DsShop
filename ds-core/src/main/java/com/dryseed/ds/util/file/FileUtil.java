@@ -1,4 +1,4 @@
-package com.dryseed.ds.util;
+package com.dryseed.ds.util.file;
 
 import android.content.ContentResolver;
 import android.content.Context;

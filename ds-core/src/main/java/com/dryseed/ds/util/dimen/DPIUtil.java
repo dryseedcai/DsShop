@@ -1,4 +1,4 @@
-package com.dryseed.ds.util;
+package com.dryseed.ds.util.dimen;
 
 import android.content.Context;
 import android.util.DisplayMetrics;

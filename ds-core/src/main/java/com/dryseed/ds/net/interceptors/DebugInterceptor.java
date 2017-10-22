@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 
 
-import com.dryseed.ds.util.FileUtil;
+import com.dryseed.ds.util.file.FileUtil;
 
 import java.io.IOException;
 

@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.dryseed.ds.app.Ds;
 import com.dryseed.ds.net.interceptors.DebugInterceptor;
-import com.dryseed.ds.util.DPIUtil;
+import com.dryseed.ds.util.dimen.DPIUtil;
 import com.dryseed.dsshop.icon.FontDsModule;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 

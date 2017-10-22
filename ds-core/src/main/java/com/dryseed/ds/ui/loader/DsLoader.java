@@ -7,8 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.dryseed.ds.R;
-import com.dryseed.ds.app.Configurator;
-import com.dryseed.ds.util.DPIUtil;
+import com.dryseed.ds.util.dimen.DPIUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

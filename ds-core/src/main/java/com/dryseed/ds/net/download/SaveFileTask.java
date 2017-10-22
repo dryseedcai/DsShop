@@ -8,7 +8,7 @@ import android.os.AsyncTask;
 import com.dryseed.ds.app.Ds;
 import com.dryseed.ds.net.callback.IRequest;
 import com.dryseed.ds.net.callback.ISuccess;
-import com.dryseed.ds.util.FileUtil;
+import com.dryseed.ds.util.file.FileUtil;
 
 import java.io.File;
 import java.io.InputStream;
