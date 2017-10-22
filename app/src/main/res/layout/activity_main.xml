@@ -9,8 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dryseed.dsshop.example.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <Button
+        android:id="@+id/go_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="GO!"/>
 </RelativeLayout>
