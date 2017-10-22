@@ -6,15 +6,18 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by User on 2017/10/21.
  */
 public class Configurator {
-    private static final HashMap<String, Object> DS_CONFIGS = new HashMap<>();
+    private static final HashMap<Object, Object> DS_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     Configurator() {
-        DS_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        DS_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
     }
 
     private static class Holder {
@@ -25,17 +28,17 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    public static HashMap<String, Object> getDsConfigs() {
+    public static HashMap<Object, Object> getDsConfigs() {
         return DS_CONFIGS;
     }
 
     public final void configure() {
-        DS_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        DS_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
         initIcons();
     }
 
     public final Configurator withApiHost(String host) {
-        DS_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        DS_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
         return this;
     }
 
@@ -53,15 +56,32 @@ public class Configurator {
         }
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        DS_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        DS_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
+        return this;
+    }
+
     private void checkConfiguration() {
-        final boolean isReady = (boolean) DS_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) DS_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready, call configure");
         }
     }
 
-    final <T> T getConfiguration(Enum<ConfigType> key) {
+    @SuppressWarnings("unchecked")
+    final <T> T getConfiguration(Object key) {
         checkConfiguration();
+        final Object value = DS_CONFIGS.get(key);
+        if (value == null) {
+            throw new NullPointerException(key.toString() + " IS NULL");
+        }
         return (T) DS_CONFIGS.get(key);
     }
 }
