@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "userId": 1,
+    "name": "DS",
+    "gender": "男",
+    "address": "上海",
+    "avatar": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58"
+  }
+}
