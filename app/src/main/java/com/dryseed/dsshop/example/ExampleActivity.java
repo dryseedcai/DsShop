@@ -1,8 +1,11 @@
 package com.dryseed.dsshop.example;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.dryseed.ds.activities.ProxyActivity;
+import com.dryseed.ds.app.Ds;
 import com.dryseed.ds.delegates.DsDelegate;
 import com.dryseed.ds.ui.launcher.ILauncherListener;
 import com.dryseed.ds.ui.launcher.OnLauncherFinishTag;
@@ -15,6 +18,12 @@ import com.dryseed.dsshop.sign.SignUpDelegate;
  * Created by User on 2017/10/21.
  */
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener{
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Ds.getConfigurator().withActivity(this);
+    }
 
     @Override
     public DsDelegate setRootDelegate() {

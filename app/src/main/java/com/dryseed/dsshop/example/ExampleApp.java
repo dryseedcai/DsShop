@@ -23,6 +23,8 @@ public class ExampleApp extends Application {
                 .withIcon(new FontDsModule())
                 .withInterceptor(new DebugInterceptor("baidu.com", R.raw.test))
                 .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
+                .withWeChatAppId("你的微信AppKey")
+                .withWeChatAppSecret("你的微信AppSecret")
                 .configure();
 
         try {

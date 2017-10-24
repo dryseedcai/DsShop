@@ -13,6 +13,8 @@ import com.dryseed.ds.delegates.DsDelegate;
 import com.dryseed.ds.net.RestClient;
 import com.dryseed.ds.net.callback.ISuccess;
 import com.dryseed.ds.util.log.DsLogger;
+import com.dryseed.ds.wechat.DsWeChat;
+import com.dryseed.ds.wechat.callbacks.IWeChatSignInCallback;
 import com.dryseed.dsshop.R;
 import com.dryseed.dsshop.R2;
 
@@ -60,7 +62,12 @@ public class SignInDelegate extends DsDelegate {
 
     @OnClick(R2.id.icon_sign_in_wechat)
     void onClickWeChat() {
+        DsWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
 
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.tv_link_sign_up)

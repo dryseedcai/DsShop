@@ -1,7 +1,16 @@
 apply plugin: 'java'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     sourceCompatibility = '1.7'
     targetCompatibility = '1.7'
+    //javapoet  https://github.com/square/javapoet:JavaPoet is a Java API for generating .java source files.
+    compile 'com.squareup:javapoet:1.9.0'
+    compile 'com.google.auto.service:auto-service:1.0-rc3'
+    compile 'com.google.auto:auto-common:0.8'
+    compile project(':ds-annotations')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
