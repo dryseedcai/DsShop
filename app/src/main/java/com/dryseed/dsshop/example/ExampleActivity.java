@@ -11,6 +11,8 @@ import com.dryseed.ds.ui.launcher.ILauncherListener;
 import com.dryseed.ds.ui.launcher.OnLauncherFinishTag;
 import com.dryseed.dsshop.launcher.LauncherDelegate;
 import com.dryseed.dsshop.launcher.LauncherScrollDelegate;
+import com.dryseed.dsshop.main.ShopBottomDelegate;
+import com.dryseed.dsshop.main.index.IndexDelegate;
 import com.dryseed.dsshop.sign.ISignListener;
 import com.dryseed.dsshop.sign.SignUpDelegate;
 
@@ -34,12 +36,12 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 
     @Override
     public void onSignInSuccess() {
-        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+        start(new ShopBottomDelegate());
     }
 
     @Override
     public void onSignUpSuccess() {
-        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+        start(new ShopBottomDelegate());
     }
 
     @Override
@@ -49,7 +51,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 startWithPop(new SignUpDelegate());
                 break;
             case SIGNED:
-                startWithPop(new ExampleDelegate());
+                startWithPop(new ShopBottomDelegate());
                 break;
             default:
                 break;
