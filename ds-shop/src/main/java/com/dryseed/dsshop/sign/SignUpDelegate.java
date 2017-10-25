@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import com.dryseed.ds.delegates.DsDelegate;
 import com.dryseed.ds.net.RestClient;
@@ -15,6 +14,7 @@ import com.dryseed.ds.net.callback.ISuccess;
 import com.dryseed.ds.util.log.DsLogger;
 import com.dryseed.dsshop.R;
 import com.dryseed.dsshop.R2;
+import com.dryseed.ds.debug.RequestData;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,7 +50,7 @@ public class SignUpDelegate extends DsDelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://192.168.56.1:8080/RestDataServer/api/user_profile.php")
+                    .url(RequestData.USER_PROFILE.name())
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())

@@ -3,25 +3,19 @@ package com.dryseed.dsshop.icon;
 import com.joanzapata.iconify.Icon;
 
 /**
- * Created by User on 2017/10/21.
- * <p/>
- * suan
- * &#xe743;
- * 
- * hua
- * &#xe744;
- * 
- * ju
- * &#xe745;
+ * Created by caiminming on 2017/10/25.
  */
-public enum DsIcons implements Icon {
+
+public enum ShopIcons implements Icon {
     suan('\ue743'),
     hua('\ue744'),
-    ju('\ue745');
+    ju('\ue745'),
+    icon_scan('\ue602'),
+    icon_ali_pay('\ue606');
 
     private char character;
 
-    DsIcons(char character) {
+    ShopIcons(char character) {
         this.character = character;
     }
 

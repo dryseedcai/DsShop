@@ -12,13 +12,12 @@ import com.dryseed.ds.net.callback.IError;
 import com.dryseed.ds.net.callback.IFailure;
 import com.dryseed.ds.net.callback.ISuccess;
 import com.dryseed.ds.net.rx.RxRestClient;
+import com.dryseed.ds.debug.RequestData;
 
-import java.util.HashMap;
 import java.util.WeakHashMap;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -70,7 +69,7 @@ public class ExampleDelegate extends DsDelegate {
     }
 
     private void testRxRestClient2() {
-        String url = "http://news.baidu.com/";
+        String url = RequestData.TEST.name();
         RxRestClient.builder()
                 .url(url)
                 .build()
@@ -101,7 +100,7 @@ public class ExampleDelegate extends DsDelegate {
 
     private void testRestClient() {
         RestClient.builder()
-                .url("http://news.baidu.com/")
+                .url(RequestData.TEST.name())
                 .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {

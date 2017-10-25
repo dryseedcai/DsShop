@@ -1,9 +1,12 @@
 package com.dryseed.ds.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +20,11 @@ public class Configurator {
     private static final HashMap<Object, Object> DS_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+    private static final Handler HANDLER = new Handler();
 
     Configurator() {
         DS_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
+        DS_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     private static class Holder {
@@ -35,6 +40,7 @@ public class Configurator {
     }
 
     public final void configure() {
+        Logger.addLogAdapter(new AndroidLogAdapter());
         DS_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
         initIcons();
     }

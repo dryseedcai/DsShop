@@ -16,6 +16,6 @@ public class FontDsModule implements IconFontDescriptor{
 
     @Override
     public Icon[] characters() {
-        return DsIcons.values();
+        return ShopIcons.values();
     }
 }

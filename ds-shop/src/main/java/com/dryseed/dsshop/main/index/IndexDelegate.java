@@ -2,16 +2,48 @@ package com.dryseed.dsshop.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.dryseed.ds.delegates.bottom.BottomItemDelegate;
+import com.dryseed.ds.net.RestClient;
+import com.dryseed.ds.net.callback.ISuccess;
+import com.dryseed.ds.ui.recycler.MultipleFields;
+import com.dryseed.ds.ui.recycler.MultipleItemEntity;
+import com.dryseed.ds.ui.refresh.RefreshHandler;
 import com.dryseed.dsshop.R;
+import com.dryseed.dsshop.R2;
+import com.dryseed.ds.debug.RequestData;
+import com.joanzapata.iconify.widget.IconTextView;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
 
 /**
  * Created by caiminming on 2017/10/24.
  */
 
 public class IndexDelegate extends BottomItemDelegate {
+
+    @BindView(R2.id.rv_index)
+    RecyclerView mRecyclerView = null;
+    @BindView(R2.id.srl_index)
+    SwipeRefreshLayout mRefreshLayout = null;
+    @BindView(R2.id.tb_index)
+    Toolbar mToolbar = null;
+    @BindView(R2.id.icon_index_scan)
+    IconTextView mIconScan = null;
+    @BindView(R2.id.et_search_view)
+    EditText mSearchView = null;
+
+    private RefreshHandler mRefreshHandler;
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
@@ -19,6 +51,46 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+    }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        Log.d("MMM", "IndexDelegate onLazyInitView");
+        initRefreshLayout();
+        initRecyclerView();
+        mRefreshHandler.firstPage(RequestData.INDEX_DATA.name());
+    }
+
+    private void initRefreshLayout() {
+        mRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light
+        );
+        // true : 下拉进度圆球会由小变大 ; 120:起始出现高度 300：结束高度
+        mRefreshLayout.setProgressViewOffset(true, 120, 300);
+    }
+
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
+        mRecyclerView.setLayoutManager(manager);
+        /*mRecyclerView.addItemDecoration
+                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));*/
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("MMM", "IndexDelegate onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("MMM", "IndexDelegate onPause");
     }
 }

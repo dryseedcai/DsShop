@@ -2,6 +2,7 @@ package com.dryseed.dsshop.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.dryseed.ds.activities.ProxyActivity;
@@ -19,11 +20,15 @@ import com.dryseed.dsshop.sign.SignUpDelegate;
 /**
  * Created by User on 2017/10/21.
  */
-public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener{
+public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
         Ds.getConfigurator().withActivity(this);
     }
 
@@ -46,7 +51,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 
     @Override
     public void onLauncherFinish(OnLauncherFinishTag onLauncherFinishTag) {
-        switch (onLauncherFinishTag){
+        switch (onLauncherFinishTag) {
             case NOT_SIGNED:
                 startWithPop(new SignUpDelegate());
                 break;

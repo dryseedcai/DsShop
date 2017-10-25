@@ -1,0 +1,45 @@
+{
+  "code": 0,
+  "message": "ok",
+  "total": 100,
+  "page_size": 6,
+  "data": [
+    {
+      "goodsId": 0,
+      "spanSize": 4,
+      "banners": [
+        "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+        "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+        "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58"
+      ]
+    },
+    {
+      "goodsId": 1,
+      "text": "测试描述1",
+      "imageUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 2,
+      "text": "测试描述2",
+      "imageUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 3,
+      "text": "测试描述3",
+      "imageUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=915892207,2507368362&fm=58",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 5,
+      "text": "我是野广告",
+      "spanSize": 4
+    }
+  ]
+}
