@@ -16,6 +16,8 @@ public class MultipleItemEntity implements MultiItemEntity {
     private final LinkedHashMap<Object, Object> MULTIPLE_FIELDS = new LinkedHashMap<>();
     private final SoftReference<LinkedHashMap<Object, Object>> FIELDS_REFERENCE =
             new SoftReference<>(MULTIPLE_FIELDS, ITEM_QUEUE);
+    //确保初始化一次Banner，防止重复Item加载
+    public boolean isInitBanner = false;
 
     MultipleItemEntity(LinkedHashMap<Object, Object> fields) {
         FIELDS_REFERENCE.get().putAll(fields);

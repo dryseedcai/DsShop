@@ -24,9 +24,6 @@ import java.util.List;
 public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
         implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
-    //确保初始化一次Banner，防止重复Item加载
-    private boolean mIsInitBanner = false;
-
     //设置图片加载策略
     private static final RequestOptions RECYCLER_OPTIONS = new RequestOptions()
             .centerCrop()
@@ -101,11 +98,11 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 holder.setText(R.id.tv_multiple, text);
                 break;
             case ItemType.BANNER:
-                if (!mIsInitBanner) {
+                if (!entity.isInitBanner) {
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
                     BannerCreator.setDefault(convenientBanner, bannerImages, this);
-                    mIsInitBanner = true;
+                    entity.isInitBanner = true;
                 }
                 break;
             default:

@@ -17,6 +17,8 @@ import com.dryseed.dsshop.main.index.IndexDelegate;
 import com.dryseed.dsshop.sign.ISignListener;
 import com.dryseed.dsshop.sign.SignUpDelegate;
 
+import qiu.niorgai.StatusBarCompat;
+
 /**
  * Created by User on 2017/10/21.
  */
@@ -30,6 +32,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Ds.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true); //沉浸式状态栏
     }
 
     @Override
