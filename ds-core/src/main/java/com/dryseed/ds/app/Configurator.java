@@ -2,7 +2,10 @@ package com.dryseed.ds.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.dryseed.ds.delegates.web.event.Event;
+import com.dryseed.ds.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -88,6 +91,27 @@ public class Configurator {
 
     public final Configurator withWeChatAppSecret(String appSecret) {
         DS_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+        return this;
+    }
+
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        DS_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+
+    /**
+     * 浏览器加载的Host
+     * @param host
+     * @return
+     */
+    public Configurator withWebHost(@NonNull String host) {
+        DS_CONFIGS.put(ConfigKeys.WEB_HOST, host);
         return this;
     }
 

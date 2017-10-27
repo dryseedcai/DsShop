@@ -3,10 +3,13 @@ package com.dryseed.dsshop.example;
 import android.app.Application;
 
 import com.dryseed.ds.app.Ds;
+import com.dryseed.ds.net.interceptors.AddCookieInterceptor;
 import com.dryseed.ds.net.interceptors.DebugInterceptor;
 import com.dryseed.ds.util.dimen.DPIUtil;
 import com.dryseed.dsshop.database.DatabaseManager;
 import com.dryseed.ds.debug.RequestData;
+import com.dryseed.dsshop.example.event.ShareEvent;
+import com.dryseed.dsshop.example.event.TestEvent;
 import com.dryseed.dsshop.icon.FontDsModule;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -27,8 +30,13 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor(RequestData.INDEX_DATA.name(), R.raw.index_data))
                 .withInterceptor(new DebugInterceptor(RequestData.SORT_LIST.name(), R.raw.sort_list))
                 .withInterceptor(new DebugInterceptor(RequestData.SORT_CONTENT_DATA.name(), R.raw.sort_content_data_1))
+                .withInterceptor(new AddCookieInterceptor()) //cookie同步拦截器
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")
+                .withJavascriptInterface("ds")
+                .withWebEvent("test", new TestEvent())
+                .withWebEvent("share", new ShareEvent())
+                .withWebHost("https://www.baidu.com/")
                 .configure();
 
         try {
