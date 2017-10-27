@@ -25,6 +25,8 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor(RequestData.TEST.name(), R.raw.test))
                 .withInterceptor(new DebugInterceptor(RequestData.USER_PROFILE.name(), R.raw.user_profile))
                 .withInterceptor(new DebugInterceptor(RequestData.INDEX_DATA.name(), R.raw.index_data))
+                .withInterceptor(new DebugInterceptor(RequestData.SORT_LIST.name(), R.raw.sort_list))
+                .withInterceptor(new DebugInterceptor(RequestData.SORT_CONTENT_DATA.name(), R.raw.sort_content_data_1))
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")
                 .configure();

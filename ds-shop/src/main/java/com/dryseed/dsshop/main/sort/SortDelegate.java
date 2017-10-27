@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.dryseed.ds.delegates.bottom.BottomItemDelegate;
 import com.dryseed.dsshop.R;
+import com.dryseed.dsshop.main.sort.content.ContentDelegate;
+import com.dryseed.dsshop.main.sort.list.VerticalListDelegate;
 
 /**
  * Created by caiminming on 2017/10/24.
@@ -27,6 +29,12 @@ public class SortDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         Log.d("MMM", "SortDelegate onLazyInitView");
+
+        final VerticalListDelegate verticalListDelegate = new VerticalListDelegate();
+        //加载根Fragment, 即Activity内的第一个Fragment 或 Fragment内的第一个子Fragment
+        loadRootFragment(R.id.vertical_list_container, verticalListDelegate);
+        //以replace方式加载根Fragment
+        replaceLoadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1), false);
     }
 
     @Override
