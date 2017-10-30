@@ -1,0 +1,30 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": [
+    {
+      "title": "商品标题1",
+      "desc": "商品详细描述1",
+      "id": 1,
+      "price": 1.00,
+      "count": 2,
+      "thumb": "https://img12.360buyimg.com/da/jfs/t11713/311/427427434/147068/fc6a888f/59f041e2N8c281371.jpg"
+    },
+    {
+      "title": "商品标题2",
+      "desc": "商品详细描述2",
+      "id": 2,
+      "price": 2.00,
+      "count": 3,
+      "thumb": "https://img13.360buyimg.com/n7/jfs/t1921/224/1199717784/223459/f4f9e577/56458dddN99cfd6bb.jpg"
+    },
+    {
+      "title": "商品标题3",
+      "desc": "商品详细描述3",
+      "id": 3,
+      "price": 3.00,
+      "count": 1,
+      "thumb": "https://img12.360buyimg.com/n7/jfs/t2113/50/936034762/80827/b3d7ca6f/5636d8ddN43699887.jpg"
+    }
+  ]
+}

@@ -30,6 +30,7 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor(RequestData.INDEX_DATA.name(), R.raw.index_data))
                 .withInterceptor(new DebugInterceptor(RequestData.SORT_LIST.name(), R.raw.sort_list))
                 .withInterceptor(new DebugInterceptor(RequestData.SORT_CONTENT_DATA.name(), R.raw.sort_content_data_1))
+                .withInterceptor(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data))
                 .withInterceptor(new AddCookieInterceptor()) //cookie同步拦截器
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")

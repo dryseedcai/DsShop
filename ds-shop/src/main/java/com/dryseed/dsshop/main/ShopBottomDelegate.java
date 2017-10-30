@@ -6,6 +6,7 @@ import com.dryseed.ds.delegates.bottom.BaseBottomDelegate;
 import com.dryseed.ds.delegates.bottom.BottomItemDelegate;
 import com.dryseed.ds.delegates.bottom.BottomTabBean;
 import com.dryseed.ds.delegates.bottom.ItemBuilder;
+import com.dryseed.dsshop.cart.ShopCartDelegate;
 import com.dryseed.dsshop.main.discover.DiscoverDelegate;
 import com.dryseed.dsshop.main.index.IndexDelegate;
 import com.dryseed.dsshop.main.sort.SortDelegate;
@@ -23,7 +24,7 @@ public class ShopBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-home}", "主页"), new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegate());
         items.put(new BottomTabBean("{fa-compass}", "发现"), new DiscoverDelegate());
-        items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new IndexDelegate());
+        items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShopCartDelegate());
         items.put(new BottomTabBean("{fa-user}", "我的"), new IndexDelegate());
         return builder.addItems(items).build();
     }

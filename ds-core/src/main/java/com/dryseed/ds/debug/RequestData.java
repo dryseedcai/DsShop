@@ -9,5 +9,6 @@ public enum RequestData {
     INDEX_DATA,
     USER_PROFILE,
     SORT_LIST,
-    SORT_CONTENT_DATA
+    SORT_CONTENT_DATA,
+    SHOP_CART_DATA
 }
