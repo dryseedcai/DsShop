@@ -11,18 +11,23 @@ import android.view.ViewStub;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.dryseed.ds.app.Ds;
 import com.dryseed.ds.debug.RequestData;
 import com.dryseed.ds.delegates.bottom.BottomItemDelegate;
 import com.dryseed.ds.net.RestClient;
 import com.dryseed.ds.net.callback.ISuccess;
 import com.dryseed.ds.ui.recycler.MultipleItemEntity;
+import com.dryseed.ds.util.log.DsLogger;
 import com.dryseed.dsshop.R;
 import com.dryseed.dsshop.R2;
+import com.dryseed.dsshop.pay.FastPay;
+import com.dryseed.dsshop.pay.IAlPayResultListener;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,7 +36,7 @@ import butterknife.OnClick;
  * Created by caiminming on 2017/10/30.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener, ICartPriceChangeListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener, ICartPriceChangeListener, IAlPayResultListener {
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRecyclerView = null;
@@ -177,5 +182,71 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                 mTvTotalPrice.setText(String.valueOf(totalPrice));
             }
         });
+    }
+
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay() {
+//        createOrder();
+        FastPay.create(this).beginPayDialog();
+    }
+
+    //创建订单，注意，和支付是没有关系的
+    private void createOrder() {
+        //final String orderUrl = "你的生成订单的API";
+        final String orderUrl = "http://app.api.zanzuanshi.com/api/v1/peyment";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        //加入你的参数
+        orderParams.put("userId", "264392");
+        orderParams.put("amount", 0.01);
+        orderParams.put("comment", "测试支付");
+        orderParams.put("type", 1);
+        orderParams.put("ordertype", 0);
+        orderParams.put("isanonymous", true);
+        orderParams.put("followeduser", 0);
+
+        RestClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                        DsLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+                    }
+                })
+                .build()
+                .post();
+
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }
