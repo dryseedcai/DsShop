@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "message": "ok",
+  "data": [
+    {
+      "id": 1,
+      "name": "aaa",
+      "phone": "18000000000",
+      "address": "上海",
+      "default": false
+    },
+    {
+      "id": 2,
+      "name": "bbb",
+      "phone": "18000000000",
+      "address": "上海",
+      "default": true
+    },
+    {
+      "id": 3,
+      "name": "ccc",
+      "phone": "18000000000",
+      "address": "上海",
+      "default": false
+    }
+  ]
+}

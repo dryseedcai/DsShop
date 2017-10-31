@@ -33,6 +33,8 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data))
                 .withInterceptor(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data))
                 .withInterceptor(new DebugInterceptor(RequestData.ORDER_LIST.name(), R.raw.order_list))
+                .withInterceptor(new DebugInterceptor(RequestData.UPLOAD_IMG.name(), R.raw.upload_img))
+                .withInterceptor(new DebugInterceptor(RequestData.ADDRESS.name(), R.raw.address))
                 .withInterceptor(new AddCookieInterceptor()) //cookie同步拦截器
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")

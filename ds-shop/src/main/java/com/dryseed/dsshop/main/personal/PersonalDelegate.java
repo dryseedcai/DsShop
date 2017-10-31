@@ -15,6 +15,7 @@ import com.dryseed.dsshop.main.personal.list.ListAdapter;
 import com.dryseed.dsshop.main.personal.list.ListBean;
 import com.dryseed.dsshop.main.personal.list.ListItemType;
 import com.dryseed.dsshop.main.personal.order.OrderListDelegate;
+import com.dryseed.dsshop.main.personal.profile.UserProfileDelegate;
 import com.dryseed.dsshop.main.personal.settings.SettingsDelegate;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class PersonalDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.img_user_avatar)
     void onClickAvatar() {
-        //getParentDelegate().start(new UserProfileDelegate());
+        getParentDelegate().start(new UserProfileDelegate());
     }
 
     private void startOrderListByType() {

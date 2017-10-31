@@ -1,8 +1,8 @@
 package com.dryseed.dsshop.main.personal.order;
 
 import android.annotation.SuppressLint;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -37,10 +37,10 @@ public class OrderListAdapter extends MultipleRecyclerAdapter {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
             case OrderListItemType.ITEM_ORDER_LIST:
-                final AppCompatImageView imageView = holder.getView(R.id.image_order_list);
-                final AppCompatTextView title = holder.getView(R.id.tv_order_list_title);
-                final AppCompatTextView price = holder.getView(R.id.tv_order_list_price);
-                final AppCompatTextView time = holder.getView(R.id.tv_order_list_time);
+                final ImageView imageView = holder.getView(R.id.image_order_list);
+                final TextView title = holder.getView(R.id.tv_order_list_title);
+                final TextView price = holder.getView(R.id.tv_order_list_price);
+                final TextView time = holder.getView(R.id.tv_order_list_time);
 
                 final String titleVal = entity.getField(MultipleFields.TITLE);
                 final String timeVal = entity.getField(OrderItemFields.TIME);

@@ -11,5 +11,7 @@ public enum RequestData {
     SORT_LIST,
     SORT_CONTENT_DATA,
     SHOP_CART_DATA,
-    ORDER_LIST
+    ORDER_LIST,
+    UPLOAD_IMG,
+    ADDRESS
 }
