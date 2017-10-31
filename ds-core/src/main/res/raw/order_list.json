@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "message": "ok",
+  "data": [
+    {
+      "id": 63161416077,
+      "thumb": "https://img12.360buyimg.com/da/jfs/t11713/311/427427434/147068/fc6a888f/59f041e2N8c281371.jpg",
+      "title": "金龙鱼 食用油 非转基因 压榨 玉米油5L",
+      "price": 59.00,
+      "time": "2017-10-31"
+    },
+    {
+      "id": 63527627052,
+      "thumb": "https://img10.360buyimg.com/N6/s60x60_jfs/t9685/86/1831528889/68773/905622a9/59e81431N8ed04f4d.jpg",
+      "title": "普丽普莱(Puritan’s Pride)大豆卵磷脂软胶囊 ",
+      "price": 47.00,
+      "time": "2017-10-14"
+    },
+    {
+      "id": 62932888679,
+      "thumb": "https://img10.360buyimg.com/N6/s60x60_jfs/t3115/74/2632443100/109799/2b643422/57e4a376Nbfd5fdd1.jpg",
+      "title": "Apple iPhone 6s Plus (A1699) 32G",
+      "price": 3999.00,
+      "time": "2017-9-22"
+    }
+  ]
+}
