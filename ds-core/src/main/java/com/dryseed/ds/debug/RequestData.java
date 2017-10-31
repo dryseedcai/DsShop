@@ -13,5 +13,6 @@ public enum RequestData {
     SHOP_CART_DATA,
     ORDER_LIST,
     UPLOAD_IMG,
-    ADDRESS
+    ADDRESS,
+    ABOUT
 }

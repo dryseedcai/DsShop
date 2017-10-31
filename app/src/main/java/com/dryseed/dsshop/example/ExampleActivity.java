@@ -17,6 +17,7 @@ import com.dryseed.dsshop.main.index.IndexDelegate;
 import com.dryseed.dsshop.sign.ISignListener;
 import com.dryseed.dsshop.sign.SignUpDelegate;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 /**
@@ -64,5 +65,17 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 }

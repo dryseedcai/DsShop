@@ -1,10 +1,15 @@
 package com.dryseed.dsshop.example;
 
 import android.app.Application;
+import android.support.annotation.Nullable;
+import android.support.multidex.MultiDexApplication;
 
 import com.dryseed.ds.app.Ds;
 import com.dryseed.ds.net.interceptors.AddCookieInterceptor;
 import com.dryseed.ds.net.interceptors.DebugInterceptor;
+import com.dryseed.ds.util.callback.CallbackManager;
+import com.dryseed.ds.util.callback.CallbackType;
+import com.dryseed.ds.util.callback.IGlobalCallback;
 import com.dryseed.ds.util.dimen.DPIUtil;
 import com.dryseed.dsshop.database.DatabaseManager;
 import com.dryseed.ds.debug.RequestData;
@@ -14,10 +19,12 @@ import com.dryseed.dsshop.icon.FontDsModule;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by User on 2017/10/21.
  */
-public class ExampleApp extends Application {
+public class ExampleApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,6 +42,7 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor(RequestData.ORDER_LIST.name(), R.raw.order_list))
                 .withInterceptor(new DebugInterceptor(RequestData.UPLOAD_IMG.name(), R.raw.upload_img))
                 .withInterceptor(new DebugInterceptor(RequestData.ADDRESS.name(), R.raw.address))
+                .withInterceptor(new DebugInterceptor(RequestData.ABOUT.name(), R.raw.about))
                 .withInterceptor(new AddCookieInterceptor()) //cookie同步拦截器
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")
@@ -51,6 +59,30 @@ public class ExampleApp extends Application {
         }
 
         DatabaseManager.getInstance().init(this);
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (JPushInterface.isPushStopped(Ds.getApplicationContext())) {
+                            //开启极光推送
+                            JPushInterface.setDebugMode(true);
+                            JPushInterface.init(Ds.getApplicationContext());
+                        }
+                    }
+                })
+                .addCallback(CallbackType.TAG_STOP_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (!JPushInterface.isPushStopped(Ds.getApplicationContext())) {
+                            JPushInterface.stopPush(Ds.getApplicationContext());
+                        }
+                    }
+                });
+
 
         initStetho();
     }
