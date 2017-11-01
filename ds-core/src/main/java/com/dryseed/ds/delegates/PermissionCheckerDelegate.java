@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.dryseed.ds.ui.camera.CameraImageBean;
 import com.dryseed.ds.ui.camera.DsCamera;
 import com.dryseed.ds.ui.camera.RequestCodes;
+import com.dryseed.ds.ui.scanner.ScannerDelegate;
 import com.dryseed.ds.util.callback.CallbackManager;
 import com.dryseed.ds.util.callback.CallbackType;
 import com.dryseed.ds.util.callback.IGlobalCallback;
@@ -46,7 +47,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     //扫描二维码(不直接调用)
     @NeedsPermission(Manifest.permission.CAMERA)
     void startScan(BaseDelegate delegate) {
-        //delegate.startForResult(new ScannerDelegate(), RequestCodes.SCAN);
+        delegate.startForResult(new ScannerDelegate(), RequestCodes.SCAN);
     }
 
     //这个是真正调用的方法
@@ -134,4 +135,5 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
             }
         }
     }
+
 }

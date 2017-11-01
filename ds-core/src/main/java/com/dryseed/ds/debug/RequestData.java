@@ -14,5 +14,6 @@ public enum RequestData {
     ORDER_LIST,
     UPLOAD_IMG,
     ADDRESS,
-    ABOUT
+    ABOUT,
+    SEARCH
 }

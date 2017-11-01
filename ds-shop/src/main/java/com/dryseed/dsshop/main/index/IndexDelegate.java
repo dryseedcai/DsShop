@@ -10,23 +10,29 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dryseed.ds.delegates.bottom.BottomItemDelegate;
 import com.dryseed.ds.ui.recycler.decoration.BaseDecoration;
 import com.dryseed.ds.ui.refresh.RefreshHandler;
+import com.dryseed.ds.util.callback.CallbackManager;
+import com.dryseed.ds.util.callback.CallbackType;
+import com.dryseed.ds.util.callback.IGlobalCallback;
 import com.dryseed.dsshop.R;
 import com.dryseed.dsshop.R2;
 import com.dryseed.ds.debug.RequestData;
 import com.dryseed.dsshop.main.ShopBottomDelegate;
+import com.dryseed.dsshop.main.search.SearchDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by caiminming on 2017/10/24.
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -49,6 +55,14 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        Toast.makeText(getContext(), "得到的二维码是" + args, Toast.LENGTH_LONG).show();
+                    }
+                });
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     @Override
@@ -89,5 +103,17 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onPause() {
         super.onPause();
         Log.d("MMM", "IndexDelegate onPause");
+    }
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().start(new SearchDelegate());
+        }
     }
 }

@@ -8,7 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:background="@android:color/holo_orange_dark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_user_profile"

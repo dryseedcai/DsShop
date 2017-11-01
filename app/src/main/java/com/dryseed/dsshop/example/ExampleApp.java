@@ -19,12 +19,16 @@ import com.dryseed.dsshop.icon.FontDsModule;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import java.util.ArrayList;
+
 import cn.jpush.android.api.JPushInterface;
+import okhttp3.Interceptor;
 
 /**
  * Created by User on 2017/10/21.
  */
 public class ExampleApp extends MultiDexApplication {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,17 +36,7 @@ public class ExampleApp extends MultiDexApplication {
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontDsModule())
-                .withInterceptor(new DebugInterceptor(RequestData.TEST.name(), R.raw.test))
-                .withInterceptor(new DebugInterceptor(RequestData.USER_PROFILE.name(), R.raw.user_profile))
-                .withInterceptor(new DebugInterceptor(RequestData.INDEX_DATA.name(), R.raw.index_data))
-                .withInterceptor(new DebugInterceptor(RequestData.SORT_LIST.name(), R.raw.sort_list))
-                .withInterceptor(new DebugInterceptor(RequestData.SORT_CONTENT_DATA.name(), R.raw.sort_content_data_1))
-                .withInterceptor(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data))
-                .withInterceptor(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data))
-                .withInterceptor(new DebugInterceptor(RequestData.ORDER_LIST.name(), R.raw.order_list))
-                .withInterceptor(new DebugInterceptor(RequestData.UPLOAD_IMG.name(), R.raw.upload_img))
-                .withInterceptor(new DebugInterceptor(RequestData.ADDRESS.name(), R.raw.address))
-                .withInterceptor(new DebugInterceptor(RequestData.ABOUT.name(), R.raw.about))
+                .withInterceptors(initDebugInterceptors())
                 .withInterceptor(new AddCookieInterceptor()) //cookie同步拦截器
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")
@@ -87,6 +81,23 @@ public class ExampleApp extends MultiDexApplication {
         initStetho();
     }
 
+    private ArrayList<Interceptor> initDebugInterceptors() {
+        ArrayList<Interceptor> interceptors = new ArrayList<>();
+        interceptors.add(new DebugInterceptor(RequestData.TEST.name(), R.raw.test));
+        interceptors.add(new DebugInterceptor(RequestData.USER_PROFILE.name(), R.raw.user_profile));
+        interceptors.add(new DebugInterceptor(RequestData.INDEX_DATA.name(), R.raw.index_data));
+        interceptors.add(new DebugInterceptor(RequestData.SORT_LIST.name(), R.raw.sort_list));
+        interceptors.add(new DebugInterceptor(RequestData.SORT_CONTENT_DATA.name(), R.raw.sort_content_data_1));
+        interceptors.add(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data));
+        interceptors.add(new DebugInterceptor(RequestData.SHOP_CART_DATA.name(), R.raw.shop_cart_data));
+        interceptors.add(new DebugInterceptor(RequestData.ORDER_LIST.name(), R.raw.order_list));
+        interceptors.add(new DebugInterceptor(RequestData.UPLOAD_IMG.name(), R.raw.upload_img));
+        interceptors.add(new DebugInterceptor(RequestData.ADDRESS.name(), R.raw.address));
+        interceptors.add(new DebugInterceptor(RequestData.ABOUT.name(), R.raw.about));
+        interceptors.add(new DebugInterceptor(RequestData.SEARCH.name(), R.raw.search));
+        return interceptors;
+    }
+
     private void initStetho() {
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
@@ -94,4 +105,5 @@ public class ExampleApp extends MultiDexApplication {
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
     }
+
 }
